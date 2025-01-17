@@ -107,16 +107,16 @@ print(len(listin_some))
 listin_some.insert(0, list(range(1,265))+["degree"])
 if input()=='s':
     pass
-    '''with open("C:\\Users\\RS7un\\OneDrive\\Desktop\\Projects\\neck device\\code\\degree regression\\turn_train_crop_some.csv",'a',newline="") as f:
+    '''with open("turn_train_crop_some.csv",'a',newline="") as f:
         writer=csv.writer(f)
         writer.writerows(listin_some)
-    with open("C:\\Users\\RS7un\\OneDrive\\Desktop\\Projects\\neck device\\code\\degree regression\\turn_train_crop_all.csv",'a',newline="") as f:
+    with open("turn_train_crop_all.csv",'a',newline="") as f:
         writer=csv.writer(f)
         writer.writerows(listin_all)'''
     
-    '''with open("C:\\Users\\RS7un\\OneDrive\\Desktop\\Projects\\neck device\\code\\degree regression\\turn_test_crop_some.csv",'a',newline="") as f:
+    '''with open("turn_test_crop_some.csv",'a',newline="") as f:
         writer=csv.writer(f)
         writer.writerows(listin_some)
-    with open("C:\\Users\\RS7un\\OneDrive\\Desktop\\Projects\\neck device\\code\\degree regression\\turn_test_crop_all.csv",'a',newline="") as f:
+    with open("turn_test_crop_all.csv",'a',newline="") as f:
         writer=csv.writer(f)
         writer.writerows(listin_all)'''
