@@ -41,7 +41,8 @@ while cap.isOpened():
             y = int(bounding_box.ymin * frame.shape[0])
             w = int(bounding_box.width * frame.shape[1])
             h = int(bounding_box.height * frame.shape[0])
-
+    else:
+        continue
     crop_img = frame[y-30:y+h+10, x-20:x+w+20]
 
     rgb_frame = cv2.cvtColor(crop_img, cv2.COLOR_BGR2RGB)
@@ -74,7 +75,7 @@ while cap.isOpened():
                 t_all.append(i.landmark[j].y)
     else:
         print("Feature detection failed")
-        crop_img=cv2.cvtColor(crop_img, cv2.COLOR_BGR2RGB)
+        continue
         
 
     mirrored_frame = cv2.flip(crop_img, 1)
