@@ -50,14 +50,16 @@ async def welcome():
     return {"messaage":"Welcome!"}
 
 @app.post("/upload/")
-async def upload_file(file: UploadFile = File(...), model_name : str = None):       #inputs = [Decissiontree, MLR, Randomforest]
+async def upload_file(file: UploadFile = File(...), model_name : str = None):       #inputs = [Decissiontree, MLR, Randomforest, SVM]
     contents = await file.read()
     nparr = np.frombuffer(contents, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    
     o = get_input(img)
     if not o:
         raise HTTPException(status_code=404, detail="Detection failed")
     t_some, crop_img = o
+
     if not model_name:
         raise HTTPException(status_code=404, detail="Model not selected")
     else:
@@ -67,9 +69,9 @@ async def upload_file(file: UploadFile = File(...), model_name : str = None):   
         model_turn = joblib.load(modle_path)
         modle_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Degree regression model\\models\\"+model_name+"_ud.joblib")
         model_ud = joblib.load(modle_path)
-    degree_tilt = model_tilt.predict([t_some])
-    degree_turn = model_turn.predict([t_some])
-    degree_ud = model_ud.predict([t_some])
+    degree_tilt = model_tilt.predict([t_some])[0]
+    degree_turn = model_turn.predict([t_some])[0]
+    degree_ud = model_ud.predict([t_some])[0]
     _, encoded_img = cv2.imencode(".png", crop_img)
     img_base64 = base64.b64encode(encoded_img).decode('utf-8')
 
